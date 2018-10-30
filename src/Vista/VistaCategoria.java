@@ -321,7 +321,7 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
            
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al leer datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al leer los datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_tCategoriaMousePressed
 
@@ -386,7 +386,7 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         if (tbNombre.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null, "Ingrese Nombre");
+            JOptionPane.showMessageDialog(null, "Ingrese un Nombre");
         }
        
         else{
@@ -442,7 +442,7 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
             rows[i][0] = listaCategorias.get(i).getIdCategoria();
             rows[i][1] = listaCategorias.get(i).getNombre();
             rows[i][2] = listaCategorias.get(i).getDescripcion();
-//            rows[i][3] = listaMeseros.get(i).getActivo();
+
         }
         
         TheModel model = new TheModel(rows, columnName);

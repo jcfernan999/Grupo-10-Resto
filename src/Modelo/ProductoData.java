@@ -75,7 +75,7 @@ public class ProductoData {
             }      
             statement.close();
         } catch (SQLException ex) {
-            System.out.println("Error al obtener los Categorias: " + ex.getMessage());
+            System.out.println("Error al obtener las Categorias: " + ex.getMessage());
         }
         
         
@@ -90,7 +90,7 @@ public class ProductoData {
         return ad.buscarCategoria(id);
         
     }
-    //con este llenamos table 
+    //con este llenamos tabla
     public List<Producto> obtenerProductoCategoria(String tipo,String  dato){
         List<Producto> productos = new ArrayList<Producto>();
         String sql;    
@@ -144,7 +144,7 @@ public class ProductoData {
             }      
             statement.close();
         } catch (SQLException ex) {
-            System.out.println("Error al obtener los alumnos: " + ex.getMessage());
+            System.out.println("Error al obtener los productos: " + ex.getMessage());
         }
         
         
@@ -203,7 +203,7 @@ public class ProductoData {
             }      
             statement.close();
         } catch (SQLException ex) {
-            System.out.println("errorororror: " + ex.getMessage());
+            System.out.println("error: " + ex.getMessage());
         }
         
         return producto;
@@ -257,7 +257,7 @@ public class ProductoData {
             }      
             statement.close();
         } catch (SQLException ex) {
-            System.out.println("Error al obtener los Categorias: " + ex.getMessage());
+            System.out.println("Error al obtener las Categorias: " + ex.getMessage());
         }
         
         

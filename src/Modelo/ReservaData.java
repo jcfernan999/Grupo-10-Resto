@@ -45,7 +45,7 @@ public class ReservaData {
             if (rs.next()) {
                 reserva.setIdReserva(rs.getInt(1));
             } else {
-                System.out.println("No se pudo obtener el id luego de insertar un Reserva");
+                System.out.println("No se pudo obtener el id luego de insertar una Reserva");
             }
             statement.close();
     
@@ -184,7 +184,7 @@ public class ReservaData {
             }      
             statement.close();
         } catch (SQLException ex) {
-            System.out.println("errorororror: " + ex.getMessage());
+            System.out.println("error: " + ex.getMessage());
         }
         
         return reserva;

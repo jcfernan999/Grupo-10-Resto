@@ -161,7 +161,7 @@ public class ClienteData {
         statement.close();
     } 
     catch (SQLException ex){
-        System.out.println("errorororror: " + ex.getMessage());
+        System.out.println("error: " + ex.getMessage());
     }
         
         return cliente;
@@ -186,7 +186,7 @@ public class ClienteData {
             statement.close();
     
         } catch (SQLException ex) {
-            System.out.println("Error al Modidicar un Cliente: " + ex.getMessage());
+            System.out.println("Error al Modificar un Cliente: " + ex.getMessage());
         }
     
     }

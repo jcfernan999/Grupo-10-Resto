@@ -741,7 +741,7 @@ public class VistaPedido extends javax.swing.JInternalFrame {
 
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al leer datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al leer los datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -823,23 +823,7 @@ public class VistaPedido extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbDniActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-//        if(tbDni.getText()=="")
-//        {
-//            JOptionPane.showMessageDialog(null, "Ingrese el DNI", "Error", JOptionPane.WARNING_MESSAGE);
-//        }
-//        else
-//        {
-//            int dni=Integer.parseInt(tbDni.getText());
-//            Cliente cliente=clienteData.buscarCliente(dni);
-//            Reserva reseva
-//            if(cliente!=null){
-//               JOptionPane.showMessageDialog(null, cliente.getNombre());
-//            }
-//            else
-//            {
-//                JOptionPane.showMessageDialog(null, "No hay reserva DNI: "+cliente.getDni());
-//            }
-//        }
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -895,7 +879,7 @@ public class VistaPedido extends javax.swing.JInternalFrame {
             }
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al leer datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al leer los datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
 
@@ -985,7 +969,7 @@ public class VistaPedido extends javax.swing.JInternalFrame {
             
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al leer datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al leer los datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnCambiar1ActionPerformed
 
@@ -1188,7 +1172,7 @@ public class VistaPedido extends javax.swing.JInternalFrame {
         tMesero.getColumnModel().getColumn(2).setPreferredWidth(0);
     }
     
-    //Creamos la tabbla y llenamos
+    //Creamos la tabla y llenamos
     public void cargarTablaDetalle(int p){
         double supTotal=0;
         DetalleData detalle = new DetalleData(conexion);

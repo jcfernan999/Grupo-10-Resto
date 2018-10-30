@@ -53,7 +53,7 @@ public class MeseroData {
         }
     }
     
-    //-------------------------------Litar datos 
+    //-------------------------------Listar datos 
     public List<Mesero> obtenerMesero(){
         List<Mesero> meseros = new ArrayList<Mesero>();
             
@@ -182,7 +182,7 @@ public class MeseroData {
         statement.close();
     } 
     catch (SQLException ex){
-        System.out.println("errorororror: " + ex.getMessage());
+        System.out.println("error: " + ex.getMessage());
     }
         
         return mesero;
@@ -252,7 +252,7 @@ public class MeseroData {
         statement.close();
     } 
     catch (SQLException ex){
-        System.out.println("errorororror: " + ex.getMessage());
+        System.out.println("error: " + ex.getMessage());
     }
         
         return mesero;

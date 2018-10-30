@@ -34,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class VistaProducto extends javax.swing.JInternalFrame {
-    //Comexion
+    //Conexion
     private Conexion conexion; 
     
     //Categoria
@@ -609,7 +609,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
             
          
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al leer datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al leer los datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_tProductoMousePressed
 
@@ -623,7 +623,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
             tbBuscar.setEnabled(true);
         }
     }//GEN-LAST:event_cbBuscarActionPerformed
-    //Creamos la tabbla y llenamos
+    //Creamos la tabla y llenamos
     public void cargarTablaProducto(String seleccionado, String buscar){
         
         

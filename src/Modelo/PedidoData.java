@@ -83,7 +83,7 @@ public class PedidoData {
             }      
             statement.close();
         } catch (SQLException ex) {
-            System.out.println("errorororror: " + ex.getMessage());
+            System.out.println("error: " + ex.getMessage());
         }
         
         return pedido;
@@ -119,7 +119,7 @@ public class PedidoData {
             }      
             statement.close();
         } catch (SQLException ex) {
-            System.out.println("errorororror: " + ex.getMessage());
+            System.out.println("error: " + ex.getMessage());
         }
         
         return pedido;
@@ -161,7 +161,7 @@ public class PedidoData {
             statement.close();
     
         } catch (SQLException ex) {
-            System.out.println("Error al Modidicar una Pedido: " + ex.getMessage());
+            System.out.println("Error al Modificar el Pedido: " + ex.getMessage());
         }
     
     }

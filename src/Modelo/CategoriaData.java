@@ -52,7 +52,7 @@ private Conexion conexion;
         }
     }
     
-    //-------------------------------Litar datos 
+    //-------------------------------Listar datos 
     public List<Categoria> obtenerCategorias(){
         List<Categoria> categorias = new ArrayList<Categoria>();
             

@@ -499,7 +499,7 @@ public class VistaReserva extends javax.swing.JInternalFrame {
         else if(tbDni.getText().length()>=9)
         {
             
-            JOptionPane.showMessageDialog(null, "Ingrese el 8 Numeros");
+            JOptionPane.showMessageDialog(null, "Ingrese 8 Numeros");
         }
         else
         {
@@ -533,11 +533,11 @@ public class VistaReserva extends javax.swing.JInternalFrame {
         }
         else if("".equals(tbNombre.getText()))
         {
-            JOptionPane.showMessageDialog(null, "Selecione una Nombre");
+            JOptionPane.showMessageDialog(null, "Selecione un Nombre");
         }
         else if("".equals(tbApellido.getText()))
         {
-            JOptionPane.showMessageDialog(null, "Selecione una Apellido");
+            JOptionPane.showMessageDialog(null, "Selecione un Apellido");
         }
         else if(dcFecha.getDate() == null)
         {
@@ -550,7 +550,7 @@ public class VistaReserva extends javax.swing.JInternalFrame {
         else
         {
 
-            //Buscamos la Cliente
+            //Buscamos al Cliente
             Cliente cliente = clienteData.buscarClientePorDni(Integer.parseInt(tbDni.getText()));
             
             //Buscamos la Mesa
@@ -568,7 +568,7 @@ public class VistaReserva extends javax.swing.JInternalFrame {
             String hora = ftbHora.getText();
             
             boolean activo = true;
-            //Agregamos el Reserva
+            //Agregamos la Reserva
 
             Reserva reserva = new Reserva(cliente,mesa,fecha,hora,activo);
           
@@ -587,11 +587,11 @@ public class VistaReserva extends javax.swing.JInternalFrame {
         }
         else if("".equals(tbNombre.getText()))
         {
-            JOptionPane.showMessageDialog(null, "Selecione una Nombre");
+            JOptionPane.showMessageDialog(null, "Selecione un Nombre");
         }
         else if("".equals(tbApellido.getText()))
         {
-            JOptionPane.showMessageDialog(null, "Selecione una Apellido");
+            JOptionPane.showMessageDialog(null, "Selecione un Apellido");
         }
         else if(dcFecha.getDate() == null)
         {
@@ -629,11 +629,11 @@ public class VistaReserva extends javax.swing.JInternalFrame {
         }
         else if("".equals(tbNombre.getText()))
         {
-            JOptionPane.showMessageDialog(null, "Selecione una Nombre");
+            JOptionPane.showMessageDialog(null, "Selecione un Nombre");
         }
         else if("".equals(tbApellido.getText()))
         {
-            JOptionPane.showMessageDialog(null, "Selecione una Apellido");
+            JOptionPane.showMessageDialog(null, "Selecione un Apellido");
         }
         else if(dcFecha.getDate() == null)
         {
@@ -662,7 +662,7 @@ public class VistaReserva extends javax.swing.JInternalFrame {
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         String seleccionado = (String)cbBuscar.getSelectedItem();
-        //        cargarTablaProducto();
+
        
         
         if(tbBuscar.getText().isEmpty())
@@ -727,7 +727,7 @@ public class VistaReserva extends javax.swing.JInternalFrame {
             
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al leer datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al leer los datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_tReservaMousePressed
 
