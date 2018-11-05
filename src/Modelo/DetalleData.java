@@ -62,7 +62,7 @@ public class DetalleData {
             statement.close();
     
         } catch (SQLException ex) {
-            System.out.println("Error al Modificar un Detalle: " + ex.getMessage());
+            System.out.println("Error al Modidicar un Detalle: " + ex.getMessage());
         }
     
     }
@@ -140,7 +140,7 @@ public class DetalleData {
                Pedido pe = buscarPedido(resultSet.getInt("idPedido"));
                detalle.setPedido(pe);
                
-               buscarMesa(resultSet.getInt("p.idMesa"));
+//               buscarMesa(resultSet.getInt("p.idMesa"));
                
                 
                detalles.add(detalle);
@@ -180,7 +180,7 @@ public class DetalleData {
         statement.close();
     } 
     catch (SQLException ex){
-        System.out.println("error: " + ex.getMessage());
+        System.out.println("Error: al buscar un detalle " + ex.getMessage());
     }
         
         return detalle;

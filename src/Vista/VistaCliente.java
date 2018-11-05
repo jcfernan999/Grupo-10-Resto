@@ -466,7 +466,7 @@ public class VistaCliente extends javax.swing.JInternalFrame {
             this.tbDni.setText(tCliente.getValueAt(filaSeleccionada, 3).toString());
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al leer los datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al leer datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_tClienteMousePressed
 

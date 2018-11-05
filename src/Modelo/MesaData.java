@@ -220,7 +220,7 @@ public class MesaData {
     try {
             
             String sql = "UPDATE mesa SET activo = 0 WHERE idMesa = ?;";
-
+//            String sql = "DELETE FROM mesa WHERE idMesa =?;";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, id);

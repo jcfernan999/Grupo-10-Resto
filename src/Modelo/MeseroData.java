@@ -53,7 +53,7 @@ public class MeseroData {
         }
     }
     
-    //-------------------------------Listar datos 
+    //-------------------------------Litar datos 
     public List<Mesero> obtenerMesero(){
         List<Mesero> meseros = new ArrayList<Mesero>();
             
@@ -182,7 +182,7 @@ public class MeseroData {
         statement.close();
     } 
     catch (SQLException ex){
-        System.out.println("error: " + ex.getMessage());
+        System.out.println("Error al buscar un mesero: " + ex.getMessage());
     }
         
         return mesero;
@@ -252,9 +252,34 @@ public class MeseroData {
         statement.close();
     } 
     catch (SQLException ex){
-        System.out.println("error: " + ex.getMessage());
+        System.out.println("errorororror: " + ex.getMessage());
     }
         
+        return mesero;
+    }
+    public Mesero buscarMeseroPorDni(int dni){
+        Mesero mesero=null;
+        try {
+            String sql = "SELECT * FROM mesero WHERE dni = ? and activo = 1;";
+
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, dni);   
+
+            ResultSet resultSet=statement.executeQuery();
+
+            while(resultSet.next()){
+                mesero = new Mesero();
+                mesero.setIdMesero(resultSet.getInt("idMesero"));
+                mesero.setNombre(resultSet.getString("nombre"));
+                mesero.setDni(resultSet.getInt("dni"));
+                mesero.setActivo(resultSet.getBoolean("activo"));
+
+            }      
+            statement.close();
+        } 
+        catch (SQLException ex){
+            System.out.println("Error al Buscar un Mesero: " + ex.getMessage());
+        }
         return mesero;
     }
 }

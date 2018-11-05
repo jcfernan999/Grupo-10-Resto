@@ -446,7 +446,7 @@ public class VistaMesero extends javax.swing.JInternalFrame {
             rows[i][0] = listaMeseros.get(i).getIdMesero();
             rows[i][1] = listaMeseros.get(i).getNombre();
             rows[i][2] = listaMeseros.get(i).getDni();
-
+//            rows[i][3] = listaMeseros.get(i).getActivo();
         }
         
         TheModel model = new TheModel(rows, columnName);
