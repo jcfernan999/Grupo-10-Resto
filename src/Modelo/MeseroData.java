@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MeseroData {
-  private Connection connection = null;
+    private Connection connection = null;
 
     public MeseroData(Conexion conexion) 
     {
@@ -87,15 +87,15 @@ public class MeseroData {
         try {
             if("Nombre".equals(tipo))
             {
-                sql = "SELECT * FROM mesero WHERE nombre = ? AND activo = 1 ;";
+                sql = "SELECT * FROM mesero WHERE nombre LIKE '%"+dato+"%' AND activo = 1 ;";
                  statement = connection.prepareStatement(sql);
-                statement.setString(1,dato);
+//                statement.setString(1,dato);
             }
             else if("DNI".equals(tipo))
             {
-                sql = "SELECT * FROM mesero WHERE dni = ? AND activo = 1 ;";
-                 statement = connection.prepareStatement(sql);
-                statement.setInt(1,Integer.parseInt(dato));
+                sql = "SELECT * FROM mesero WHERE dni LIKE '"+dato+"%' AND activo = 1 ;";
+                statement = connection.prepareStatement(sql);
+//                statement.setInt(1,Integer.parseInt(dato));
             }
             else if("".equals(tipo))
             {
@@ -133,7 +133,7 @@ public class MeseroData {
     
     
     public List<Mesero> obtenerMeseros(String nombre){
-    List<Mesero> meseros = new ArrayList<Mesero>();
+        List<Mesero> meseros = new ArrayList<Mesero>();
             
 
         try {
@@ -252,7 +252,7 @@ public class MeseroData {
         statement.close();
     } 
     catch (SQLException ex){
-        System.out.println("errorororror: " + ex.getMessage());
+        System.out.println("Error al buscar Usuario: " + ex.getMessage());
     }
         
         return mesero;

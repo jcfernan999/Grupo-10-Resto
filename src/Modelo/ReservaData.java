@@ -100,7 +100,9 @@ public class ReservaData {
         PreparedStatement statement;
         try {
             
-            sql = "SELECT * FROM reserva r, cliente c WHERE r.idCliente = c.idCliente AND c.dni = ? AND r.activo = 1 ;";
+            sql = "SELECT * FROM reserva r, cliente c WHERE r.idCliente = c.idCliente AND c.dni LIKE '"+dni+"%' AND r.activo = 1 ;";
+            
+                statement = connection.prepareStatement(sql);
             statement = connection.prepareStatement(sql);
             statement.setInt(1,dni);
          
@@ -166,7 +168,7 @@ public class ReservaData {
         List<Reserva> reservas = new ArrayList<Reserva>();
             
         try {
-            String horaActual = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+            
             String sql = "SELECT * FROM reserva WHERE idMesa = ? AND activo = 1 AND fecha = CURDATE();";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1,idMesa);

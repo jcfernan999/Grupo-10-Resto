@@ -206,11 +206,11 @@ public class CategoriaData {
         String sql;    
         PreparedStatement statement;
         try {
-            if("Nombre".equals(tipo))
+             if("Nombre".equals(tipo))
             {
-                sql = "SELECT * FROM categoria WHERE nombre = ? AND activo = 1 ;";
+                sql = "SELECT * FROM categoria WHERE nombre LIKE '%"+dato+"%' AND activo = 1 ;";
                 statement = connection.prepareStatement(sql);
-                statement.setString(1,dato);
+//                statement.setString(1,dato);
             }
             else if("Activos".equals(tipo))
             {

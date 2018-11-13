@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PedidoData {
     private Connection connection = null;
-     private Conexion conexion;
+    private Conexion conexion;
 
     public PedidoData(Conexion conexion) {
         try {
@@ -223,4 +223,127 @@ public class PedidoData {
     }
     
     
+    public List<Pedido> obtenerPedidoDeUnaMesaPorFechaEntreHoras(int idMesa,String fecha,String horaDesde,String horaHasta)
+    {
+        List<Pedido> pedidos = new ArrayList<Pedido>();
+        
+        try {
+            
+            String sql = "SELECT * FROM mesa m, pedido p WHERE m.idMesa = p.idMesa AND p.idMesa = ? AND p.fecha = ? AND p.hora BETWEEN ? AND ?;";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, idMesa);
+            statement.setString(2, fecha);
+            statement.setString(3, horaDesde);
+            statement.setString(4, horaHasta);
+            
+            ResultSet resultSet = statement.executeQuery();
+            Pedido pedido;
+            
+            while(resultSet.next()){
+               pedido = new Pedido();
+               pedido.setIdPedido(resultSet.getInt("idPedido"));
+               pedido.setFecha(resultSet.getDate("fecha"));
+               pedido.setHora(resultSet.getString("hora"));
+               pedido.setPagado(resultSet.getBoolean("Pagado"));
+               pedido.setCancelado(resultSet.getBoolean("Cancelado"));
+               
+               
+               Mesero meseros = buscarMesero(resultSet.getInt("idMesero"));
+               pedido.setMesero(meseros);
+               
+               Mesa mesas = buscarMesa(resultSet.getInt("idMesa"));
+               pedido.setMesa(mesas);
+                
+               pedidos.add(pedido);
+            }      
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener los Pedidos: " + ex.getMessage());
+        }
+        return pedidos;
+    }
+    
+    
+    public List<Pedido> obtenerLosIngresosTotalesPorFecha(String fecha)
+    {
+        List<Pedido> pedidos = new ArrayList<Pedido>();
+        
+        try {
+            
+            String sql = "select * "
+                       + "FROM pedido ped,(SELECT pe.idPedido,SUM(d.total)as sumaTotal "
+                                        + "FROM detalle d, (SELECT idPedido "
+                                                         + "FROM pedido "
+                                                         + "WHERE fecha = ?) AS pe "
+                                        + "WHERE d.idPedido = pe.idPedido GROUP BY pe.idPedido) AS pedi "
+                       + "WHERE ped.idPedido = pedi.idPedido ";
+            
+            PreparedStatement statement = connection.prepareStatement(sql);
+            
+            statement.setString(1, fecha);
+           
+            
+            ResultSet resultSet = statement.executeQuery();
+            Pedido pedido;
+            
+            while(resultSet.next()){
+               pedido = new Pedido();
+               pedido.setIdPedido(resultSet.getInt("idPedido"));
+               pedido.setFecha(resultSet.getDate("fecha"));
+               pedido.setHora(resultSet.getString("hora"));
+               pedido.setPagado(resultSet.getBoolean("pagado"));
+               pedido.setCancelado(resultSet.getBoolean("cancelado"));
+               pedido.setSumaTotal(resultSet.getDouble("sumaTotal"));
+               
+               Mesero meseros = buscarMesero(resultSet.getInt("idMesero"));
+               pedido.setMesero(meseros);
+               
+               Mesa mesas = buscarMesa(resultSet.getInt("idMesa"));
+               pedido.setMesa(mesas);
+                
+               pedidos.add(pedido);
+            }      
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener los Pedidos: " + ex.getMessage());
+        }
+        return pedidos;
+    }
+    
+    public List<Pedido> obtenerPedidoDeUnMeseroDelDia(int idMesero)
+    {
+        List<Pedido> pedidos = new ArrayList<Pedido>();
+        
+        try {
+            
+            String sql = "SELECT * FROM pedido  WHERE idMesero = ?;";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, idMesero);
+            
+            ResultSet resultSet = statement.executeQuery();
+            Pedido pedido;
+            
+            while(resultSet.next()){
+               pedido = new Pedido();
+               pedido.setIdPedido(resultSet.getInt("idPedido"));
+               pedido.setFecha(resultSet.getDate("fecha"));
+               pedido.setHora(resultSet.getString("hora"));
+               pedido.setPagado(resultSet.getBoolean("Pagado"));
+               pedido.setCancelado(resultSet.getBoolean("Cancelado"));
+               
+               
+               Mesero meseros = buscarMesero(resultSet.getInt("idMesero"));
+               pedido.setMesero(meseros);
+               
+               Mesa mesas = buscarMesa(resultSet.getInt("idMesa"));
+               pedido.setMesa(mesas);
+                
+               pedidos.add(pedido);
+            }      
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener los Pedidos: " + ex.getMessage());
+        }
+        return pedidos;
+    }
 }

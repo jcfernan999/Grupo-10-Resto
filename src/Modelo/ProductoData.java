@@ -89,6 +89,7 @@ public class ProductoData {
         
         return ad.buscarCategoria(id);
         
+        
     }
     //con este llenamos table 
     public List<Producto> obtenerProductoCategoria(String tipo,String  dato){
@@ -96,17 +97,17 @@ public class ProductoData {
         String sql;    
         PreparedStatement statement;
         try {
-             if("Nombre".equals(tipo))
+            if("Nombre".equals(tipo))
             {
-                sql = "SELECT * FROM producto WHERE nombre = ? and activo=1;";
+                sql = "SELECT * FROM producto WHERE nombre LIKE '%"+dato+"%' AND activo = 1 ;";
                 statement = connection.prepareStatement(sql);
-                statement.setString(1,dato);
+//                statement.setString(1,dato);
             }
             else if("Categoria".equals(tipo))
             {
-                sql = "SELECT * FROM producto p, categoria c WHERE p.IdCategoria = c.IdCategoria and  c.Nombre = ?  and p.activo=1;";
+                sql = "SELECT * FROM producto p, categoria c WHERE p.idCategoria = c.idCategoria and  c.nombre LIKE '%"+dato+"%'  and p.activo=1;";
                 statement = connection.prepareStatement(sql);
-                statement.setString(1,dato);
+//                statement.setString(1,dato);
             }
              else if("Activos".equals(tipo))
             {

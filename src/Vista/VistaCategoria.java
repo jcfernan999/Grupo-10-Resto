@@ -5,6 +5,7 @@ import Modelo.CategoriaData;
 import Modelo.Conexion;
 import Modelo.SoloMayusculas;
 import Modelo.TheModel;
+import static Vista.Principal.Escritorio;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -53,7 +54,6 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
         tCategoria = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         tbBuscar = new javax.swing.JTextField();
-        btnBuscar1 = new javax.swing.JButton();
         cbBuscar = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -153,14 +153,9 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
         jPanel4.setBackground(new java.awt.Color(153, 153, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Buscar"));
 
-        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar46.png"))); // NOI18N
-        btnBuscar1.setBorderPainted(false);
-        btnBuscar1.setContentAreaFilled(false);
-        btnBuscar1.setFocusPainted(false);
-        btnBuscar1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar46_2.png"))); // NOI18N
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
+        tbBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbBuscarKeyReleased(evt);
             }
         });
 
@@ -179,10 +174,8 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(cbBuscar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(tbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addComponent(tbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,9 +185,6 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
                     .addComponent(cbBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(tbBuscar))
                 .addGap(21, 21, 21))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(btnBuscar1)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jLabel1.setBackground(new java.awt.Color(0, 153, 255));
@@ -322,41 +312,26 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tCategoriaMousePressed
 
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        String seleccionado = (String)cbBuscar.getSelectedItem();
-
-        if(tbBuscar.getText().isEmpty()&& "Desactivado".equals(seleccionado))
-        {
-
-            LimpiarTabla();
-            cargarTablaCategoria(seleccionado,tbBuscar.getText());
-        }
-        else if(tbBuscar.getText().isEmpty()&& "Activos".equals(seleccionado))
-        {
-
-            LimpiarTabla();
-            cargarTablaCategoria(seleccionado,tbBuscar.getText());
-        }
-        else if(tbBuscar.getText().isEmpty())
-        {
-
-            JOptionPane.showMessageDialog(null, "Ingrese Datos ");
-        }
-        else{
-            LimpiarTabla();
-            cargarTablaCategoria(seleccionado,tbBuscar.getText());
-        }
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
-
     private void cbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBuscarActionPerformed
-        if(cbBuscar.getSelectedItem()=="Activos" || cbBuscar.getSelectedItem()=="Desactivado")
+       Limpiar();
+        if(cbBuscar.getSelectedItem()=="Activos" )
         {
+           
             tbBuscar.setEnabled(false);
+            LimpiarTabla();
+            cargarTablaCategoria("Activos","");
+        }
+        else if(cbBuscar.getSelectedItem()=="Desactivado")
+        {
+            
+            tbBuscar.setEnabled(false);
+            LimpiarTabla();
+            cargarTablaCategoria("Desactivado","");
         }
         else
-        {
-            tbBuscar.setEnabled(true);
-        }
+        {           
+            tbBuscar.setEnabled(true);   
+        }   
 
     }//GEN-LAST:event_cbBuscarActionPerformed
 
@@ -421,8 +396,19 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.dispose();
+        Escritorio.removeAll();
+        Escritorio.repaint();
+          VistaProducto vr=new VistaProducto();
+          vr.setVisible(true);
+        Escritorio.add(vr);
+        Escritorio.moveToFront(vr);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void tbBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbBuscarKeyReleased
+        String seleccionado = (String)cbBuscar.getSelectedItem();
+        LimpiarTabla();
+        cargarTablaCategoria(seleccionado,tbBuscar.getText());
+    }//GEN-LAST:event_tbBuscarKeyReleased
 
     public void Limpiar(){
         tbId.setText("");
@@ -475,7 +461,6 @@ public class VistaCategoria extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;

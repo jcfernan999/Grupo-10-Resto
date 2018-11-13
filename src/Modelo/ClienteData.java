@@ -84,21 +84,21 @@ public class ClienteData {
         try {
             if("Nombre".equals(tipo))
             {
-                sql = "SELECT * FROM cliente WHERE nombre = ? AND activo = 1 ;";
-                 statement = connection.prepareStatement(sql);
-                statement.setString(1,dato);
+                sql = "SELECT * FROM cliente WHERE nombre LIKE '%"+dato+"%' AND activo = 1 ;";
+                statement = connection.prepareStatement(sql);
+//                statement.setString(1,dato);
             }
             else if("Apellido".equals(tipo))
             {
-                sql = "SELECT * FROM cliente WHERE apellido = ? AND activo = 1 ;";
-                 statement = connection.prepareStatement(sql);
-                statement.setInt(1,Integer.parseInt(dato));
+                sql = "SELECT * FROM cliente WHERE apellido LIKE '%"+dato+"%' AND activo = 1 ;";
+                statement = connection.prepareStatement(sql);
+//                statement.setString(1,dato);
             }
             else if("DNI".equals(tipo))
             {
-                sql = "SELECT * FROM cliente WHERE dni = ? AND activo = 1 ;";
-                 statement = connection.prepareStatement(sql);
-                statement.setInt(1,Integer.parseInt(dato));
+                sql = "SELECT * FROM cliente WHERE dni LIKE '"+dato+"%' AND activo = 1 ;";
+                statement = connection.prepareStatement(sql);
+//                statement.setInt(1,Integer.parseInt(dato));
             }
             else if("Activos".equals(tipo))
             {

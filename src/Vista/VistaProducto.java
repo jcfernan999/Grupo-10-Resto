@@ -54,6 +54,9 @@ public class VistaProducto extends javax.swing.JInternalFrame {
             listaCategorias=(ArrayList)categoriaData.obtenerCategorias();
             
             productoData = new ProductoData(conexion);
+            
+            
+            
             tbNombre.setDocument(new SoloMayusculas());
             tbBuscar.setDocument(new SoloMayusculas());
             
@@ -104,7 +107,6 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         btnSalir = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         tbBuscar = new javax.swing.JTextField();
-        btnBuscar1 = new javax.swing.JButton();
         cbBuscar = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -148,6 +150,8 @@ public class VistaProducto extends javax.swing.JInternalFrame {
             }
         });
 
+        sCantidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Cantidad");
 
@@ -155,7 +159,12 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         jLabel3.setText("Precio");
 
         btnSubirImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Agregar_A_48.png"))); // NOI18N
+        btnSubirImagen.setContentAreaFilled(false);
+        btnSubirImagen.setFocusable(false);
         btnSubirImagen.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Agregar_B_48.png"))); // NOI18N
+        btnSubirImagen.setRequestFocusEnabled(false);
+        btnSubirImagen.setRolloverEnabled(false);
+        btnSubirImagen.setVerifyInputWhenFocusTarget(false);
         btnSubirImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubirImagenActionPerformed(evt);
@@ -183,8 +192,8 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSubirImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addComponent(btnSubirImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -315,14 +324,9 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         jPanel7.setBackground(new java.awt.Color(153, 153, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Buscar"));
 
-        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar46.png"))); // NOI18N
-        btnBuscar1.setBorderPainted(false);
-        btnBuscar1.setContentAreaFilled(false);
-        btnBuscar1.setFocusPainted(false);
-        btnBuscar1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar46_2.png"))); // NOI18N
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
+        tbBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbBuscarKeyReleased(evt);
             }
         });
 
@@ -341,10 +345,8 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(cbBuscar, 0, 131, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(tbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addComponent(tbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,13 +356,10 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                     .addComponent(cbBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(tbBuscar))
                 .addGap(21, 21, 21))
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(btnBuscar1)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel8.setBackground(new java.awt.Color(0, 153, 255));
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Buscar"));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Lista"));
 
         tProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -407,7 +406,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 450, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
@@ -565,33 +564,6 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        String seleccionado = (String)cbBuscar.getSelectedItem();
-//        cargarTablaProducto();
-         if(tbBuscar.getText().isEmpty()&& "Desactivado".equals(seleccionado))    
-        {
-
-            LimpiarTabla();
-            cargarTablaProducto(seleccionado,tbBuscar.getText());    
-        }
-        else if(tbBuscar.getText().isEmpty()&& "Activos".equals(seleccionado))    
-        {
-
-            LimpiarTabla();
-            cargarTablaProducto(seleccionado,tbBuscar.getText());    
-        }
-        else if(tbBuscar.getText().isEmpty()) 
-        {
-
-            JOptionPane.showMessageDialog(null, "Ingrese Datos ");
-        }
-        else{
-            LimpiarTabla();
-            cargarTablaProducto(seleccionado,tbBuscar.getText());
-        }
-
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
-
     private void tProductoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tProductoMousePressed
         int filaSeleccionada = this.tProducto.getSelectedRow();//Identificamos que fila ha sido seleccionada
 
@@ -617,15 +589,32 @@ public class VistaProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tProductoMousePressed
 
     private void cbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBuscarActionPerformed
-        if(cbBuscar.getSelectedItem()=="Activos" || cbBuscar.getSelectedItem()=="Desactivado")
+        Limpiar();
+        if(cbBuscar.getSelectedItem()=="Activos" )
         {
+           
             tbBuscar.setEnabled(false);
+            LimpiarTabla();
+            cargarTablaProducto("Activos","");
+        }
+        else if(cbBuscar.getSelectedItem()=="Desactivado")
+        {
+            
+            tbBuscar.setEnabled(false);
+            LimpiarTabla();
+            cargarTablaProducto("Desactivado","");
         }
         else
-        {
-            tbBuscar.setEnabled(true);
-        }
+        {           
+            tbBuscar.setEnabled(true);   
+        }   
     }//GEN-LAST:event_cbBuscarActionPerformed
+
+    private void tbBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbBuscarKeyReleased
+       String seleccionado = (String)cbBuscar.getSelectedItem();
+        LimpiarTabla();
+        cargarTablaProducto(seleccionado,tbBuscar.getText());
+    }//GEN-LAST:event_tbBuscarKeyReleased
     //Creamos la tabbla y llenamos
     public void cargarTablaProducto(String seleccionado, String buscar){
         
@@ -699,7 +688,6 @@ public class VistaProducto extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
@@ -730,6 +718,7 @@ public class VistaProducto extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tbStock;
     private javax.swing.JButton tbnAgregarCategoria;
     // End of variables declaration//GEN-END:variables
+    
     public void cargaCategoria()
     {
         for(Categoria item:listaCategorias)
@@ -738,10 +727,11 @@ public class VistaProducto extends javax.swing.JInternalFrame {
         }
 
     }
+    
     public void Limpiar()
     {
         tbNombre.setText("");
-        
+        tbStock.setText("");
          sCantidad.setValue(0);
  
         tbPrecio.setText("");

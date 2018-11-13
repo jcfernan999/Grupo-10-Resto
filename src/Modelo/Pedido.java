@@ -13,7 +13,19 @@ public class Pedido {
     private String hora;
     private boolean pagado;
     private boolean cancelado;
-
+    private double sumaTotal;
+    
+    public Pedido(int idPedido, Mesero mesero, Mesa mesa, Date fecha, String hora, boolean pagado, boolean cancelado,double sumaTotal) {
+        this.idPedido = idPedido;
+        this.mesero = mesero;
+        this.mesa = mesa;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.pagado = pagado;
+        this.cancelado = cancelado;
+        this.sumaTotal = sumaTotal;
+    }
+    
     public Pedido(int idPedido, Mesero mesero, Mesa mesa, Date fecha, String hora, boolean pagado, boolean cancelado) {
         this.idPedido = idPedido;
         this.mesero = mesero;
@@ -91,6 +103,14 @@ public class Pedido {
 
     public void setCancelado(boolean cancelado) {
         this.cancelado = cancelado;
+    }
+
+    public double getSumaTotal() {
+        return sumaTotal;
+    }
+
+    public void setSumaTotal(double sumaTotal) {
+        this.sumaTotal = sumaTotal;
     }
     
     

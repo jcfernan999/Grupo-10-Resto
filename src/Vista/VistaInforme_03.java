@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class VistaMeseroReporte extends javax.swing.JInternalFrame {
+public class VistaInforme_03 extends javax.swing.JInternalFrame {
 
     private Connection connection = null;
     private Conexion conexion;
@@ -40,7 +40,7 @@ public class VistaMeseroReporte extends javax.swing.JInternalFrame {
     private PedidoData pedidoData;
     private ArrayList<Pedido> listaPedidos;
     
-    public VistaMeseroReporte() {
+    public VistaInforme_03() {
         initComponents();
         try {
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
@@ -73,18 +73,12 @@ public class VistaMeseroReporte extends javax.swing.JInternalFrame {
         btnBuscar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         tbNombre = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        cbBuscar = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        dcDesde = new com.toedter.calendar.JDateChooser();
-        jLabel4 = new javax.swing.JLabel();
-        dcHasta = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
         tbIdMesero = new javax.swing.JTextField();
-        btnBuscarFechas = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jPanel9.setBackground(new java.awt.Color(0, 153, 255));
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Buscar"));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Lista"));
         jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanel9MousePressed(evt);
@@ -122,7 +116,7 @@ public class VistaMeseroReporte extends javax.swing.JInternalFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -142,20 +136,29 @@ public class VistaMeseroReporte extends javax.swing.JInternalFrame {
 
         jLabel2.setText("DNI");
 
+        tbNombre.setEnabled(false);
+
+        jLabel5.setText("Nombre");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addGap(57, 57, 57)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(61, 61, 61)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(tbIdMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,81 +173,22 @@ public class VistaMeseroReporte extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(tbIdMesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jLabel1.setBackground(new java.awt.Color(51, 102, 255));
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Listar Peldidos Por Meseros");
+        jLabel1.setText("Listar pedidos que cobro un mesero en particular en el día");
         jLabel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black, java.awt.Color.black));
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jLabel1.setOpaque(true);
-
-        jPanel10.setBackground(new java.awt.Color(153, 153, 255));
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Pedidos"));
-
-        cbBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cobrados", "Cancelados del Dia", "Fecha" }));
-        cbBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbBuscarActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Desde");
-
-        jLabel4.setText("Hasta");
-
-        btnBuscarFechas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar46.png"))); // NOI18N
-        btnBuscarFechas.setBorderPainted(false);
-        btnBuscarFechas.setContentAreaFilled(false);
-        btnBuscarFechas.setFocusPainted(false);
-        btnBuscarFechas.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar46_2.png"))); // NOI18N
-        btnBuscarFechas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarFechasActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cbBuscar, 0, 0, Short.MAX_VALUE)
-                .addGap(80, 80, 80)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(dcDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dcHasta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBuscarFechas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(tbIdMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnBuscarFechas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel10Layout.createSequentialGroup()
-                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(dcDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tbIdMesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dcHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 13, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -252,7 +196,6 @@ public class VistaMeseroReporte extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -262,10 +205,7 @@ public class VistaMeseroReporte extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -281,30 +221,18 @@ public class VistaMeseroReporte extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Ingrese el DNI ");
         }
         else{
-            tbIdMesero.setText("");
+            
             Mesero mesero = meseroData.buscarMeseroPorDni(Integer.parseInt(tbBuscar.getText()));
-            tbNombre.setText(mesero.getNombre());
-            tbIdMesero.setText(mesero.getIdMesero()+"");
-//            LimpiarTabla();
-//            cargarTablaProducto(seleccionado,tbBuscar.getText());
+            if(mesero!=null)
+            {
+                tbNombre.setText(mesero.getNombre());
+                tbIdMesero.setText(mesero.getIdMesero()+"");
+                LimpiarTabla();
+                
+                cargarTablaPedido(mesero.getIdMesero());
+            }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void cbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBuscarActionPerformed
-         if(cbBuscar.getSelectedItem()=="Cancelados del Dia")
-        {
-            LimpiarTabla();
-            cargarTablaPedido("Cancelados del Dia",tbIdMesero.getText(),"");
-        }
-        
-        else if(cbBuscar.getSelectedItem()=="Cobrados")
-        {
-            
-            LimpiarTabla();
-            cargarTablaPedido("Cobrados",tbIdMesero.getText(),"");
-        }
-        
-    }//GEN-LAST:event_cbBuscarActionPerformed
 
     private void jPanel9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MousePressed
         // TODO add your handling code here:
@@ -314,23 +242,10 @@ public class VistaMeseroReporte extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_tPedidoMousePressed
 
-    private void btnBuscarFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFechasActionPerformed
-        java.util.Date desde=dcDesde.getDate();
-        long d =desde.getTime();
-        java.sql.Date fecha1 =new java.sql.Date(d);
-
-        java.util.Date hasta=dcHasta.getDate();
-        long h =hasta.getTime();
-        java.sql.Date fecha2 =new java.sql.Date(h);
-        LimpiarTabla();
-        cargarTablaPedido(fecha1+"",tbIdMesero.getText(),fecha2+"");
-        
-    }//GEN-LAST:event_btnBuscarFechasActionPerformed
-
-    public void cargarTablaPedido(String seleccionado, String buscar,String buscar2){
+    public void cargarTablaPedido(int idMesero){
         
         
-        listaPedidos =(ArrayList)pedidoData.obtenerPedido(seleccionado,buscar,buscar2);
+        listaPedidos =(ArrayList)pedidoData.obtenerPedidoDeUnMeseroDelDia(idMesero);
         String[] columnName = {"Mesa","Fecha","Hora","Pagado","Cancelado"};
         Object[][] rows = new Object[listaPedidos.size()][5];
         for(int i = 0; i < listaPedidos.size(); i++)
@@ -362,15 +277,9 @@ public class VistaMeseroReporte extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnBuscarFechas;
-    private javax.swing.JComboBox<String> cbBuscar;
-    private com.toedter.calendar.JDateChooser dcDesde;
-    private com.toedter.calendar.JDateChooser dcHasta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel10;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;

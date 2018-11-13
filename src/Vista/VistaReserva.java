@@ -8,25 +8,28 @@ import Modelo.Conexion;
 import Modelo.Mesa;
 import Modelo.MesaData;
 import Modelo.TheModel;
+import static Vista.Principal.Escritorio;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import static java.lang.Integer.parseInt;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -66,8 +69,10 @@ public class VistaReserva extends javax.swing.JInternalFrame {
             tbIdCliente.setVisible(false);
             tbIdMesa.setVisible(false);
             cargaCapacidadMesas();
-            
-            
+            limitarCaracteres(tbDni,8);
+            limitarCaracteres(tbBuscar,8);
+            soloNumeros(tbDni);
+            soloNumeros(tbBuscar);
         } 
         catch (ClassNotFoundException ex) {
             Logger.getLogger(VistaCategoria.class.getName()).log(Level.SEVERE, null, ex);
@@ -114,7 +119,6 @@ public class VistaReserva extends javax.swing.JInternalFrame {
         tbIdCliente = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         tbBuscar = new javax.swing.JTextField();
-        btnBuscar1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -169,6 +173,7 @@ public class VistaReserva extends javax.swing.JInternalFrame {
         jLabel4.setText("Nombre");
 
         tbNombre.setEditable(false);
+        tbNombre.setEnabled(false);
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar46.png"))); // NOI18N
         btnBuscar.setBorder(null);
@@ -191,6 +196,8 @@ public class VistaReserva extends javax.swing.JInternalFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
+
+        tbApellido.setEnabled(false);
 
         jLabel8.setText("Apellido");
 
@@ -320,6 +327,8 @@ public class VistaReserva extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        tbNom.setEnabled(false);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -367,14 +376,9 @@ public class VistaReserva extends javax.swing.JInternalFrame {
         jPanel8.setBackground(new java.awt.Color(153, 153, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Buscar"));
 
-        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar46.png"))); // NOI18N
-        btnBuscar1.setBorderPainted(false);
-        btnBuscar1.setContentAreaFilled(false);
-        btnBuscar1.setFocusPainted(false);
-        btnBuscar1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar46_2.png"))); // NOI18N
-        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscar1ActionPerformed(evt);
+        tbBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbBuscarKeyReleased(evt);
             }
         });
 
@@ -389,10 +393,8 @@ public class VistaReserva extends javax.swing.JInternalFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addComponent(tbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,9 +404,6 @@ public class VistaReserva extends javax.swing.JInternalFrame {
                     .addComponent(tbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(21, 21, 21))
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(btnBuscar1)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel9.setBackground(new java.awt.Color(0, 153, 255));
@@ -568,9 +567,7 @@ public class VistaReserva extends javax.swing.JInternalFrame {
             Reserva reserva = new Reserva(cliente,mesa,fecha,hora,activo);
           
             reservaData.guardarReserva(reserva);
-            Limpiar();
-            LimpiarTabla();
-            cargarTablaReserva(btnMesaSeleccionada);
+            RecargarPedido();
         }
 
     }//GEN-LAST:event_btnAgregar2ActionPerformed
@@ -668,17 +665,6 @@ public class VistaReserva extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        if(tbBuscar.getText().isEmpty())
-        {
-            JOptionPane.showMessageDialog(null, "Ingrese DNI ");
-        }
-        else{
-            LimpiarTabla();
-            cargarTablaReservas(parseInt(tbBuscar.getText()));
-        }
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
-
     private void tReservaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tReservaMousePressed
         int filaSeleccionada = this.tReserva.getSelectedRow();//Identificamos que fila ha sido seleccionada
 
@@ -708,6 +694,15 @@ public class VistaReserva extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Error al leer datos de la tabla: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_tReservaMousePressed
+
+    private void tbBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbBuscarKeyReleased
+        LimpiarTabla();
+        if(tbBuscar.getText().isEmpty())
+        {
+             JOptionPane.showMessageDialog(null,"Ingrese dni");
+        }else
+            cargarTablaReserva(Integer.parseInt(tbBuscar.getText()));
+    }//GEN-LAST:event_tbBuscarKeyReleased
 
     int btnMesaSeleccionada=0;
     private void botonesMesas(int capacidad)
@@ -906,11 +901,46 @@ public class VistaReserva extends javax.swing.JInternalFrame {
         
         
     }
+    public void RecargarPedido()
+    {
+        Escritorio.removeAll();
+        Escritorio.repaint();
+          VistaReserva vr=new VistaReserva();
+          vr.setVisible(true);
+        Escritorio.add(vr);
+        Escritorio.moveToFront(vr);
+    }
+    public void limitarCaracteres(JTextField campo,int cantidad)
+    {
+        campo.addKeyListener(new KeyAdapter(){
+           public void keyTyped(KeyEvent e)
+           { 
+               char c= e.getKeyChar();
+               int tamaño=campo.getText().length();
+               if(tamaño>=cantidad)
+               {
+                   e.consume();
+               }
+           }
+        });
+    }
+    public static void soloNumeros(JTextField a)
+    {
+        a.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e)
+            {
+                char c=e.getKeyChar();
+                if(!Character.isDigit(c))
+                {
+                    e.consume();
+                }
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;

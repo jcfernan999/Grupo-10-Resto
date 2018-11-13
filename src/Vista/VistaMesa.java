@@ -43,7 +43,6 @@ public class VistaMesa extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         tbBuscar = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
         cbBuscar = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -71,14 +70,9 @@ public class VistaMesa extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(153, 153, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Buscar"));
 
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar46.png"))); // NOI18N
-        btnBuscar.setBorderPainted(false);
-        btnBuscar.setContentAreaFilled(false);
-        btnBuscar.setFocusPainted(false);
-        btnBuscar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar46_2.png"))); // NOI18N
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+        tbBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbBuscarKeyReleased(evt);
             }
         });
 
@@ -97,10 +91,8 @@ public class VistaMesa extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(cbBuscar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(tbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addComponent(tbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,9 +102,6 @@ public class VistaMesa extends javax.swing.JInternalFrame {
                     .addComponent(cbBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                     .addComponent(tbBuscar))
                 .addGap(21, 21, 21))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(btnBuscar)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
@@ -299,30 +288,6 @@ public class VistaMesa extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
-        String seleccionado = (String)cbBuscar.getSelectedItem();
-        if(tbBuscar.getText().isEmpty()&& "Desactivado".equals(seleccionado))    
-        {
-            LimpiarTabla();
-            cargarTablaMesa(seleccionado,tbBuscar.getText());    
-        }
-        else if(tbBuscar.getText().isEmpty()&& "Activos".equals(seleccionado))    
-        {
-            LimpiarTabla();
-            cargarTablaMesa(seleccionado,tbBuscar.getText());    
-        }
-        else if(tbBuscar.getText().isEmpty()) 
-        {
-
-            JOptionPane.showMessageDialog(null, "Ingrese Datos ");
-        }
-        else{
-            LimpiarTabla();
-            cargarTablaMesa(seleccionado,tbBuscar.getText());
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (tbNombre.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Imgrese un Nombre", "Error", JOptionPane.WARNING_MESSAGE);
@@ -400,15 +365,32 @@ public class VistaMesa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tMesaMousePressed
 
     private void cbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBuscarActionPerformed
-        if(cbBuscar.getSelectedItem()=="Activos" || cbBuscar.getSelectedItem()=="Desactivado")
+        Limpiar();
+        if(cbBuscar.getSelectedItem()=="Activos" )
         {
+           
             tbBuscar.setEnabled(false);
+            LimpiarTabla();
+            cargarTablaMesa("Activos","");
+        }
+        else if(cbBuscar.getSelectedItem()=="Desactivado")
+        {
+            
+            tbBuscar.setEnabled(false);
+            LimpiarTabla();
+            cargarTablaMesa("Desactivado","");
         }
         else
-        {
-            tbBuscar.setEnabled(true);
-        }
+        {           
+            tbBuscar.setEnabled(true);   
+        }   
     }//GEN-LAST:event_cbBuscarActionPerformed
+
+    private void tbBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbBuscarKeyReleased
+       String seleccionado = (String)cbBuscar.getSelectedItem();
+        LimpiarTabla();
+        cargarTablaMesa(seleccionado,tbBuscar.getText());
+    }//GEN-LAST:event_tbBuscarKeyReleased
      //Creamos la tabbla y llenamos
     public void cargarTablaMesa(String seleccionado,String buscar){
        
@@ -488,7 +470,6 @@ public class VistaMesa extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel aaaaaaaa;
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;

@@ -78,21 +78,21 @@ public class MesaData {
         try {
             if("Nombre".equals(tipo))
             {
-                sql = "SELECT * FROM mesa WHERE nombre = ? AND activo = 1 AND estado = 1;";
-                 statement = connection.prepareStatement(sql);
-                statement.setString(1,dato);
+                sql = "SELECT * FROM mesa WHERE nombre LIKE '%"+dato+"%' AND activo = 1 ;";
+                statement = connection.prepareStatement(sql);
+//                statement.setString(1,dato);
             }
             else if("Estado".equals(tipo))
             {
-                sql = "SELECT * FROM mesa WHERE estado = ? AND activo = 1 AND estado = 1;";
+                sql = "SELECT * FROM mesa WHERE estado LIKE '%"+dato+"%' AND activo = 1 AND estado = 1;";
                  statement = connection.prepareStatement(sql);
-                statement.setString(1,dato);
+//                statement.setString(1,dato);
             }
             else if("Capacidad".equals(tipo))
             {
-                sql = "SELECT * FROM mesa WHERE capacidad = ? AND activo = 1 AND estado = 1;";
+                sql = "SELECT * FROM mesa WHERE capacidad LIKE '%"+dato+"%' AND activo = 1 AND estado = 1;";
                  statement = connection.prepareStatement(sql);
-                statement.setInt(1,Integer.parseInt(dato));
+//                statement.setInt(1,Integer.parseInt(dato));
             }
              else if("Activos".equals(tipo))
             {
